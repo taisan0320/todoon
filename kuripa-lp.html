@@ -543,8 +543,8 @@
 
     /* ── Responsive ── */
     @media (max-width: 900px) {
-      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
-      .hero::before { width: 100%; height: 50%; top: unset; bottom: -10%; right: 0; border-radius: 60% 60% 0 0; }
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; padding: 60px 24px; }
+      .hero::before { width: 100%; height: 40%; top: unset; bottom: 0; right: 0; border-radius: 60% 60% 0 0; opacity: 0.5; }
       .solution-inner { grid-template-columns: 1fr; gap: 40px; }
       .problems-grid { grid-template-columns: 1fr; }
       .reasons-grid { grid-template-columns: 1fr; }
@@ -553,10 +553,48 @@
       .plan-card.featured { order: -1; }
     }
     @media (max-width: 600px) {
-      .section { padding: 72px 0; }
-      .scope-grid { grid-template-columns: 1fr; }
+      html, body { overflow-x: hidden; }
+      .section { padding: 64px 0; }
+      .container { padding: 0 20px; }
       nav .btn { display: none; }
-      .hero-actions { flex-direction: column; align-items: flex-start; }
+
+      /* Hero */
+      .hero-inner { padding: 48px 20px; gap: 32px; }
+      .hero-actions { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .hero-visual { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+      .hero-card { padding: 14px 14px; gap: 10px; }
+      .hero-card-icon { width: 36px; height: 36px; font-size: 18px; }
+      .hero-card-text { font-size: 12px; }
+      .hero-card-text strong { font-size: 13px; }
+
+      /* Problems */
+      .problem-item { padding: 20px 20px; }
+
+      /* Solution */
+      .solution-box { padding: 24px 20px; }
+      .comparison-row { font-size: 13px; padding: 10px 12px; }
+
+      /* Reasons */
+      .reason-card { padding: 28px 24px; }
+
+      /* Scope */
+      .scope-grid { grid-template-columns: 1fr; }
+      .scope-item { padding: 24px 20px; }
+
+      /* Plans */
+      .plan-card { padding: 32px 24px; }
+      .plan-price-num { font-size: 32px; }
+
+      /* FAQ */
+      .faq-q { padding: 20px 20px; font-size: 14px; }
+      .faq-a { padding: 0 20px 20px 20px; font-size: 14px; }
+
+      /* CTA */
+      .cta-title { font-size: 26px; }
+      .cta-text { font-size: 15px; }
+
+      /* Footer */
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 8px; }
     }
   </style>
 </head>
@@ -583,9 +621,7 @@
         <span class="hero-title-accent">外注より深く。</span>
       </h1>
       <p class="hero-sub">
-        クリパは、地方の中小企業のためのクリエイティブパートナーです。<br />
-        ブランドづくりから、デザイン、SNS、動画、AI活用まで。<br />
-        必要なクリエイティブを、月額定額でまるごと引き受けます。
+        クリパは、地方の中小企業のためのクリエイティブパートナーです。ブランドづくりから、デザイン、SNS、動画、AI活用まで。必要なクリエイティブを、月額定額でまるごと引き受けます。
       </p>
       <div class="hero-actions">
         <a href="#cta" class="btn btn-primary">まずは話を聞いてみる</a>
