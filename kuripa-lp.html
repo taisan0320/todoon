@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>クリパ by SynQ Creative | 地方中小企業のクリエイティブパートナー</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #E8351A;
+      --red-dark: #c42c14;
+      --black: #111111;
+      --gray-dark: #333333;
+      --gray: #666666;
+      --gray-light: #f5f5f5;
+      --white: #ffffff;
+      --font-jp: 'Noto Sans JP', sans-serif;
+      --font-en: 'Montserrat', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-jp);
+      color: var(--black);
+      background: var(--white);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Utility ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 96px 0; }
+    .section--dark { background: var(--black); color: var(--white); }
+    .section--gray { background: var(--gray-light); }
+    .section--red { background: var(--red); color: var(--white); }
+
+    .section-label {
+      font-family: var(--font-en);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 16px;
+      display: block;
+    }
+    .section--dark .section-label { color: #ff7a66; }
+    .section--red .section-label { color: rgba(255,255,255,0.7); }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 900;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+    }
+
+    .btn {
+      display: inline-block;
+      font-family: var(--font-jp);
+      font-size: 16px;
+      font-weight: 700;
+      padding: 18px 40px;
+      border-radius: 4px;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      letter-spacing: 0.03em;
+    }
+    .btn-primary {
+      background: var(--red);
+      color: var(--white);
+    }
+    .btn-primary:hover { background: var(--red-dark); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(232,53,26,0.35); }
+    .btn-white {
+      background: var(--white);
+      color: var(--red);
+    }
+    .btn-white:hover { background: #f0f0f0; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+    .btn-outline-white {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,0.5);
+    }
+    .btn-outline-white:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      text-decoration: none;
+    }
+    .nav-logo-main {
+      font-family: var(--font-en);
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--black);
+      letter-spacing: -0.02em;
+    }
+    .nav-logo-accent { color: var(--red); }
+    .nav-logo-sub {
+      font-family: var(--font-jp);
+      font-size: 11px;
+      color: var(--gray);
+      letter-spacing: 0.05em;
+    }
+    .nav-cta { font-size: 14px; padding: 10px 24px; }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 64px;
+      background: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -10%; right: -5%;
+      width: 55%;
+      height: 120%;
+      background: linear-gradient(135deg, #fef0ee 0%, #fde4df 100%);
+      border-radius: 0 0 0 60%;
+      z-index: 0;
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-en);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      border: 1.5px solid var(--red);
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--red);
+      border-radius: 50%;
+    }
+    .hero-title {
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 900;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+    }
+    .hero-title-accent { color: var(--red); }
+    .hero-sub {
+      font-size: clamp(15px, 1.8vw, 17px);
+      color: var(--gray-dark);
+      line-height: 1.9;
+      margin-bottom: 40px;
+      font-weight: 400;
+    }
+    .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .hero-note {
+      font-size: 13px;
+      color: var(--gray);
+    }
+    .hero-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .hero-card {
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 12px;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      transition: transform 0.2s;
+    }
+    .hero-card:hover { transform: translateX(4px); }
+    .hero-card-icon {
+      width: 44px; height: 44px;
+      background: #fef0ee;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .hero-card-text { font-size: 14px; font-weight: 500; color: var(--gray-dark); }
+    .hero-card-text strong { display: block; color: var(--black); font-size: 15px; margin-bottom: 2px; }
+
+    /* ── Problems ── */
+    .problems { }
+    .problems-title { margin-bottom: 56px; }
+    .problems-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .problem-item {
+      background: var(--white);
+      border: 1.5px solid rgba(0,0,0,0.08);
+      border-radius: 12px;
+      padding: 28px 32px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .problem-item:hover {
+      border-color: var(--red);
+      box-shadow: 0 4px 20px rgba(232,53,26,0.1);
+    }
+    .problem-quote {
+      font-size: 28px;
+      color: var(--red);
+      font-family: Georgia, serif;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: -4px;
+    }
+    .problem-text { font-size: 15px; font-weight: 500; line-height: 1.7; color: var(--gray-dark); }
+
+    /* ── Solution ── */
+    .solution-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .solution-visual {
+      position: relative;
+    }
+    .solution-box {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.1);
+      position: relative;
+    }
+    .solution-box-label {
+      font-family: var(--font-en);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--gray);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .solution-comparison {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .comparison-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .comparison-row.old { background: #fef0ee; color: #c42c14; }
+    .comparison-row.new { background: #f0fdf4; color: #15803d; }
+    .comparison-row.new.highlight { background: var(--red); color: var(--white); }
+    .comparison-icon { font-size: 18px; flex-shrink: 0; }
+    .solution-title { margin-bottom: 24px; }
+    .solution-text { font-size: 15px; color: var(--gray-dark); line-height: 1.9; }
+
+    /* ── Reasons ── */
+    .reasons-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+    .reason-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 36px 32px;
+      border: 1.5px solid rgba(0,0,0,0.07);
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    .reason-card:hover {
+      border-color: var(--red);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(232,53,26,0.12);
+    }
+    .reason-num {
+      font-family: var(--font-en);
+      font-size: 48px;
+      font-weight: 900;
+      color: #f0f0f0;
+      line-height: 1;
+      margin-bottom: 12px;
+      letter-spacing: -0.03em;
+    }
+    .reason-heading {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.5;
+      margin-bottom: 14px;
+      color: var(--black);
+    }
+    .reason-heading .accent { color: var(--red); }
+    .reason-text { font-size: 14px; color: var(--gray); line-height: 1.8; }
+
+    /* ── Scope ── */
+    .scope-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 56px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .scope-item {
+      padding: 32px 28px;
+      background: rgba(255,255,255,0.05);
+      transition: background 0.2s;
+    }
+    .scope-item:hover { background: rgba(255,255,255,0.1); }
+    .scope-icon { font-size: 28px; margin-bottom: 14px; display: block; }
+    .scope-name { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .scope-desc { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.7; }
+
+    /* ── Plans ── */
+    .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+      align-items: start;
+    }
+    .plan-card {
+      border-radius: 16px;
+      padding: 40px 36px;
+      border: 1.5px solid rgba(0,0,0,0.08);
+      background: var(--white);
+      position: relative;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .plan-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.1); }
+    .plan-card.featured {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
+    }
+    .plan-badge {
+      position: absolute;
+      top: -14px; left: 50%;
+      transform: translateX(-50%);
+      background: var(--red);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 5px 16px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+    .plan-name-en {
+      font-family: var(--font-en);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 4px;
+    }
+    .plan-card.featured .plan-name-en { color: #ff7a66; }
+    .plan-name-jp {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+    .plan-price {
+      margin-bottom: 8px;
+    }
+    .plan-price-num {
+      font-family: var(--font-en);
+      font-size: 38px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .plan-price-unit { font-size: 14px; font-weight: 400; color: var(--gray); }
+    .plan-card.featured .plan-price-unit { color: rgba(255,255,255,0.6); }
+    .plan-hours {
+      display: inline-block;
+      background: #f5f5f5;
+      color: var(--gray-dark);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+    .plan-card.featured .plan-hours { background: rgba(255,255,255,0.15); color: var(--white); }
+    .plan-divider {
+      height: 1px;
+      background: rgba(0,0,0,0.08);
+      margin-bottom: 20px;
+    }
+    .plan-card.featured .plan-divider { background: rgba(255,255,255,0.15); }
+    .plan-desc { font-size: 14px; color: var(--gray); line-height: 1.8; margin-bottom: 20px; }
+    .plan-card.featured .plan-desc { color: rgba(255,255,255,0.7); }
+    .plan-period {
+      font-size: 12px;
+      color: var(--gray);
+      padding-top: 12px;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .plan-card.featured .plan-period { color: rgba(255,255,255,0.5); border-color: rgba(255,255,255,0.1); }
+
+    /* ── FAQ ── */
+    .faq-list {
+      margin-top: 56px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .faq-item {
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      background: var(--white);
+    }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q {
+      padding: 28px 32px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      list-style: none;
+      transition: background 0.15s;
+    }
+    .faq-q:hover { background: #fafafa; }
+    .faq-q::marker { display: none; }
+    .faq-q-badge {
+      font-family: var(--font-en);
+      font-size: 13px;
+      font-weight: 900;
+      color: var(--red);
+      flex-shrink: 0;
+    }
+    .faq-q-icon {
+      margin-left: auto;
+      font-size: 18px;
+      color: var(--gray);
+      transition: transform 0.2s;
+    }
+    details[open] .faq-q-icon { transform: rotate(45deg); }
+    .faq-a {
+      padding: 0 32px 28px 64px;
+      font-size: 15px;
+      color: var(--gray-dark);
+      line-height: 1.8;
+    }
+
+    /* ── CTA ── */
+    .cta-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .cta-title { margin-bottom: 20px; font-size: clamp(28px, 4vw, 44px); }
+    .cta-text { font-size: 16px; line-height: 1.9; margin-bottom: 40px; opacity: 0.9; }
+    .cta-actions { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .cta-note { font-size: 13px; opacity: 0.65; }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--black);
+      color: rgba(255,255,255,0.5);
+      padding: 40px 0;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-logo {
+      font-family: var(--font-en);
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+    .footer-logo span { color: var(--red); }
+    .footer-copy { font-size: 12px; }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .hero::before { width: 100%; height: 50%; top: unset; bottom: -10%; right: 0; border-radius: 60% 60% 0 0; }
+      .solution-inner { grid-template-columns: 1fr; gap: 40px; }
+      .problems-grid { grid-template-columns: 1fr; }
+      .reasons-grid { grid-template-columns: 1fr; }
+      .scope-grid { grid-template-columns: 1fr 1fr; }
+      .plans-grid { grid-template-columns: 1fr; }
+      .plan-card.featured { order: -1; }
+    }
+    @media (max-width: 600px) {
+      .section { padding: 72px 0; }
+      .scope-grid { grid-template-columns: 1fr; }
+      nav .btn { display: none; }
+      .hero-actions { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Nav ── -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <span class="nav-logo-main">kuri<span class="nav-logo-accent">pa</span></span>
+      <span class="nav-logo-sub">by SynQ Creative</span>
+    </a>
+    <a href="#cta" class="btn btn-primary nav-cta">無料相談を申し込む</a>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <span class="hero-badge">Creative Partner</span>
+      <h1 class="hero-title">
+        採用より早く、<br />
+        <span class="hero-title-accent">外注より深く。</span>
+      </h1>
+      <p class="hero-sub">
+        クリパは、地方の中小企業のためのクリエイティブパートナーです。<br />
+        ブランドづくりから、デザイン、SNS、動画、AI活用まで。<br />
+        必要なクリエイティブを、月額定額でまるごと引き受けます。
+      </p>
+      <div class="hero-actions">
+        <a href="#cta" class="btn btn-primary">まずは話を聞いてみる</a>
+        <span class="hero-note">初回相談 無料</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="hero-card-icon">🎨</div>
+        <div class="hero-card-text">
+          <strong>ブランド × デザイン</strong>
+          ロゴから資料まで、何でも対応
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-icon">📱</div>
+        <div class="hero-card-text">
+          <strong>SNS × 動画</strong>
+          Reels・TikTok・Shorts にも対応
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-icon">🤖</div>
+        <div class="hero-card-text">
+          <strong>AI活用 × DX</strong>
+          業務効率化も一緒に考えます
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-icon">💬</div>
+        <div class="hero-card-text">
+          <strong>定額 × 即レス</strong>
+          チャット一言で動き出す
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Problems ── -->
+<section class="section section--gray">
+  <div class="container">
+    <span class="section-label">Problems</span>
+    <h2 class="section-title problems-title">こんなお悩み<br />ありませんか？</h2>
+    <div class="problems-grid">
+      <div class="problem-item">
+        <span class="problem-quote">"</span>
+        <p class="problem-text">デザイナーを雇いたいけど、採用するほどの仕事量じゃない</p>
+      </div>
+      <div class="problem-item">
+        <span class="problem-quote">"</span>
+        <p class="problem-text">外注するたびに見積もりが発生して、小さな修正も頼みにくい</p>
+      </div>
+      <div class="problem-item">
+        <span class="problem-quote">"</span>
+        <p class="problem-text">SNSも動画もブランドも全部やらないといけないのに、手が回らない</p>
+      </div>
+      <div class="problem-item">
+        <span class="problem-quote">"</span>
+        <p class="problem-text">何から手をつければいいか、そもそもわからない</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Solution ── -->
+<section class="section">
+  <div class="container">
+    <div class="solution-inner">
+      <div class="solution-visual">
+        <div class="solution-box">
+          <p class="solution-box-label">Before → After</p>
+          <div class="solution-comparison">
+            <div class="comparison-row old">
+              <span class="comparison-icon">✗</span>
+              採用コスト＋時間がかかる
+            </div>
+            <div class="comparison-row old">
+              <span class="comparison-icon">✗</span>
+              外注のたびに見積もりが必要
+            </div>
+            <div class="comparison-row old">
+              <span class="comparison-icon">✗</span>
+              担当者がいなくて手が止まる
+            </div>
+            <div class="comparison-row new" style="margin-top:8px;">
+              <span class="comparison-icon">✓</span>
+              チャット一言で即動ける
+            </div>
+            <div class="comparison-row new highlight">
+              <span class="comparison-icon">✓</span>
+              定額だから何でも頼める
+            </div>
+            <div class="comparison-row new">
+              <span class="comparison-icon">✓</span>
+              社内にいるように伴走する
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="solution-copy">
+        <span class="section-label">Solution</span>
+        <h2 class="section-title solution-title">だからクリパがいる。</h2>
+        <p class="solution-text">
+          クリパは、あなたの会社のクリエイティブチームです。外注でも、派遣でもない。まるで社内にいるように、ブランドのことを一緒に考え、かたちにし続けるパートナーです。<br /><br />
+          月額定額だから、思いついたその日に動けます。見積もりも、発注手続きも必要ありません。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Reasons ── -->
+<section class="section section--gray">
+  <div class="container">
+    <span class="section-label">Why Kuripa</span>
+    <h2 class="section-title">クリパが選ばれる理由</h2>
+    <div class="reasons-grid">
+      <div class="reason-card">
+        <div class="reason-num">01</div>
+        <h3 class="reason-heading">「<span class="accent">これはできません</span>」と言わない。</h3>
+        <p class="reason-text">ロゴから名刺、SNS、LP、動画、AI活用まで。クリエイティブに関することなら、まるごと引き受けます。</p>
+      </div>
+      <div class="reason-card">
+        <div class="reason-num">02</div>
+        <h3 class="reason-heading"><span class="accent">定額</span>だから、気軽に頼める。</h3>
+        <p class="reason-text">チャットで一言送るだけ。小さな修正も大きなプロジェクトも、定額の中で動きます。</p>
+      </div>
+      <div class="reason-card">
+        <div class="reason-num">03</div>
+        <h3 class="reason-heading"><span class="accent">地方の文脈</span>がわかる。</h3>
+        <p class="reason-text">東京の感覚ではなく、地方の空気感でブランドを考えます。あなたの会社が伝えたいことを、地域の言葉でかたちにします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Scope ── -->
+<section class="section section--dark">
+  <div class="container">
+    <span class="section-label">Scope</span>
+    <h2 class="section-title">クリパができること</h2>
+    <div class="scope-grid">
+      <div class="scope-item">
+        <span class="scope-icon">🏗️</span>
+        <div class="scope-name">ブランドディレクション</div>
+        <div class="scope-desc">月次MTGを軸に、長期目線でブランドを設計します。</div>
+      </div>
+      <div class="scope-item">
+        <span class="scope-icon">🌐</span>
+        <div class="scope-name">Webサイト運用・改善</div>
+        <div class="scope-desc">更新・修正・改善提案まで継続的に対応します。</div>
+      </div>
+      <div class="scope-item">
+        <span class="scope-icon">📣</span>
+        <div class="scope-name">SNS運用</div>
+        <div class="scope-desc">投稿企画・制作・スケジューリングをまるごと担当します。</div>
+      </div>
+      <div class="scope-item">
+        <span class="scope-icon">🎬</span>
+        <div class="scope-name">短動画制作</div>
+        <div class="scope-desc">Reels・TikTok・YouTube Shortsに対応します。</div>
+      </div>
+      <div class="scope-item">
+        <span class="scope-icon">✏️</span>
+        <div class="scope-name">デザイン制作</div>
+        <div class="scope-desc">バナー・チラシ・名刺・資料など各種対応します。</div>
+      </div>
+      <div class="scope-item">
+        <span class="scope-icon">⚡</span>
+        <div class="scope-name">AI活用支援</div>
+        <div class="scope-desc">業務効率化・DX推進を一緒に考えます。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Plans ── -->
+<section class="section">
+  <div class="container">
+    <span class="section-label">Plans</span>
+    <h2 class="section-title">3つのプランから選べます</h2>
+    <div class="plans-grid">
+      <div class="plan-card">
+        <div class="plan-name-en">Light</div>
+        <div class="plan-name-jp">ライト</div>
+        <div class="plan-price">
+          <span class="plan-price-num">150,000</span>
+          <span class="plan-price-unit">円/月（税抜）</span>
+        </div>
+        <div class="plan-hours">月30時間</div>
+        <div class="plan-divider"></div>
+        <p class="plan-desc">SNS運用とデザイン素材制作を中心に、クリエイティブの第一歩をサポートします。</p>
+        <div class="plan-period">契約期間：3ヶ月〜</div>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-badge">おすすめ</div>
+        <div class="plan-name-en">Standard</div>
+        <div class="plan-name-jp">スタンダード</div>
+        <div class="plan-price">
+          <span class="plan-price-num">300,000</span>
+          <span class="plan-price-unit">円/月（税抜）</span>
+        </div>
+        <div class="plan-hours">月60時間</div>
+        <div class="plan-divider"></div>
+        <p class="plan-desc">Web運用・SNS・動画・デザインまで、幅広くまるごと対応します。</p>
+        <div class="plan-period">契約期間：3ヶ月〜</div>
+      </div>
+      <div class="plan-card">
+        <div class="plan-name-en">Full</div>
+        <div class="plan-name-jp">フル</div>
+        <div class="plan-price">
+          <span class="plan-price-num">550,000</span>
+          <span class="plan-price-unit">円/月（税抜）</span>
+        </div>
+        <div class="plan-hours">月110時間</div>
+        <div class="plan-divider"></div>
+        <p class="plan-desc">ブランド設計から全制作物まで、完全に一気通貫で対応します。AI活用・DX伴走も含みます。</p>
+        <div class="plan-period">契約期間：6ヶ月〜</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section class="section section--gray">
+  <div class="container">
+    <span class="section-label">FAQ</span>
+    <h2 class="section-title">よくある質問</h2>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="faq-q-badge">Q</span>
+          どんな業種でも対応できますか？
+          <span class="faq-q-icon">+</span>
+        </summary>
+        <div class="faq-a">
+          はい。飲食・製造・小売・士業・学校など、業種を問わず対応しています。
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="faq-q-badge">Q</span>
+          契約後すぐに動いてもらえますか？
+          <span class="faq-q-icon">+</span>
+        </summary>
+        <div class="faq-a">
+          はい。まずブランドMTGで現状把握と優先課題の整理を行い、最短で翌週から制作に入ります。
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-q">
+          <span class="faq-q-badge">Q</span>
+          途中でプランを変更できますか？
+          <span class="faq-q-icon">+</span>
+        </summary>
+        <div class="faq-a">
+          契約更新のタイミングで変更可能です。まず小さく始めて、必要に応じて拡大していくことをお勧めしています。
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section id="cta" class="section section--red">
+  <div class="container">
+    <div class="cta-inner">
+      <span class="section-label">Contact</span>
+      <h2 class="section-title cta-title">まず、話を聞いてみてください。</h2>
+      <p class="cta-text">
+        「うちみたいな会社でも大丈夫？」そんな質問から始めていただいて構いません。クリパは、あなたの会社のクリエイティブの現状を一緒に聞くことから始めます。
+      </p>
+      <div class="cta-actions">
+        <a href="#" class="btn btn-white">無料相談を申し込む</a>
+        <span class="cta-note">初回相談 無料 ／ 強引な営業は一切しません</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">kuri<span>pa</span> by SynQ Creative</div>
+      </div>
+      <div class="footer-copy">© 2025 SynQ Creative. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
